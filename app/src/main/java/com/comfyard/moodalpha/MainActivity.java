@@ -1,6 +1,9 @@
 package com.comfyard.moodalpha;
 
 import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.app.TaskStackBuilder;
@@ -8,10 +11,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -24,15 +24,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
 
-
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class MainActivity extends Activity implements ActionBar.TabListener {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -44,22 +41,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     private CharSequence mTitle;
     private String[] mPlanetTitles;
 
-
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
-     * three primary sections of the app. We use a {@link android.support.v4.app.FragmentPagerAdapter}
-     * derivative, which will keep every loaded fragment in memory. If this becomes too memory
-     * intensive, it may be best to switch to a {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will display the three primary sections of the app, one at a
-     * time.
-     */
     ViewPager mViewPager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +97,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
-        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getFragmentManager());
 
         // Specify that the Home/Up button should not be enabled, since there is no hierarchical
         // parent.
@@ -197,6 +181,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 intent = new Intent(this, MoodActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_my:
+                intent = new Intent(this, MyActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_tap:
+                intent = new Intent(this, TabActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.action_settings:
                 return true;
 
@@ -257,7 +249,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     }
 
-
     /* The click listner for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -268,12 +259,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = new PlanetFragment();
+        Fragment fragment = new DrawerFragment();
         Bundle args = new Bundle();
-        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+        args.putInt(DrawerFragment.ARG_DRAWER_NUMBER, position);
         fragment.setArguments(args);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
         // update selected item and title, then close the drawer
@@ -372,28 +363,5 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
     }
 
-    /**
-     * Fragment that appears in the "content_frame", shows a planet
-     */
-    public static class PlanetFragment extends Fragment {
-        public static final String ARG_PLANET_NUMBER = "planet_number";
 
-        public PlanetFragment() {
-            // Empty constructor required for fragment subclasses
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_planet, container, false);
-            int i = getArguments().getInt(ARG_PLANET_NUMBER);
-            String planet = getResources().getStringArray(R.array.planets_array)[i];
-
-            int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
-                    "drawable", getActivity().getPackageName());
-            ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
-            getActivity().setTitle(planet);
-            return rootView;
-        }
-    }
 }

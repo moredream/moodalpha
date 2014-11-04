@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.comfyard.moodalpha" >
 
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21" />
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="21" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +23,8 @@
         <activity
             android:name=".MoodActivity"
             android:label="@string/title_activity_mood"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -30,13 +33,53 @@
         <activity
             android:name=".CollectionMoodActivity"
             android:label="@string/mood_collection"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
+        <activity
+            android:name=".MemberActivity"
+            android:label="@string/title_activity_member"
+            android:parentActivityName=".MainActivity" >
 
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ThingActivity"
+            android:label="@string/title_activity_thing"
+            android:parentActivityName=".MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MyActivity"
+            android:label="@string/title_activity_my"
+            android:parentActivityName=".MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TabActivity"
+            android:label="@string/title_activity_tab"
+            android:parentActivityName=".MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
