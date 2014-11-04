@@ -20,8 +20,5 @@
         android:title="@string/title_activity_my"
         android:orderInCategory="100"
         android:showAsAction="never" />
-    <item android:id="@+id/action_tap"
-        android:title="@string/title_activity_tab"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
+
 </menu>

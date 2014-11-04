@@ -30,16 +30,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
-        <activity
-            android:name=".CollectionMoodActivity"
-            android:label="@string/mood_collection"
-            android:parentActivityName=".MainActivity" >
 
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.comfyard.moodalpha.MainActivity" />
-        </activity>
         <activity
             android:name=".MemberActivity"
             android:label="@string/title_activity_member"
@@ -70,16 +61,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
-        <activity
-            android:name=".TabActivity"
-            android:label="@string/title_activity_tab"
-            android:parentActivityName=".MainActivity" >
 
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.comfyard.moodalpha.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

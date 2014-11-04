@@ -185,10 +185,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                 intent = new Intent(this, MyActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_tap:
-                intent = new Intent(this, TabActivity.class);
-                startActivity(intent);
-                return true;
+
             case R.id.action_settings:
                 return true;
 
