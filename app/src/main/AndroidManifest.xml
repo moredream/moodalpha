@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.comfyard.moodalpha" >
 
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -18,8 +20,23 @@
         </activity>
         <activity
             android:name=".MoodActivity"
-            android:label="@string/title_activity_mood" >
+            android:label="@string/title_activity_mood"
+            android:parentActivityName=".MainActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
+        <activity
+            android:name=".CollectionMoodActivity"
+            android:label="@string/mood_collection"
+            android:parentActivityName=".MainActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
