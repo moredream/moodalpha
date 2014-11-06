@@ -6,13 +6,21 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="21" />
 
+    <android:uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.comfyard.moodalpha.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,20 +29,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MoodActivity"
+            android:name="com.comfyard.moodalpha.MoodActivity"
             android:label="@string/title_activity_mood"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
-
         <activity
-            android:name=".MemberActivity"
+            android:name="com.comfyard.moodalpha.MemberActivity"
             android:label="@string/title_activity_member"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -42,9 +49,9 @@
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
         <activity
-            android:name=".ThingActivity"
+            android:name="com.comfyard.moodalpha.ThingActivity"
             android:label="@string/title_activity_thing"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -52,16 +59,23 @@
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
         <activity
-            android:name=".MyActivity"
+            android:name="com.comfyard.moodalpha.MyActivity"
             android:label="@string/title_activity_my"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
-
+        <activity
+            android:name="com.comfyard.moodalpha.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

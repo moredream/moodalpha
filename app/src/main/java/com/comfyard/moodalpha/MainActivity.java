@@ -1,5 +1,6 @@
 package com.comfyard.moodalpha;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -16,10 +17,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.comfyard.moodalpha.custom.CustomDrawerAdapter;
+import com.comfyard.moodalpha.custom.DrawerItem;
+import com.comfyard.moodalpha.custom.FragmentOne;
+import com.comfyard.moodalpha.custom.FragmentThree;
+import com.comfyard.moodalpha.custom.FragmentTwo;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends Activity {
@@ -31,26 +39,58 @@ public class MainActivity extends Activity {
     private CharSequence mTitle;
     private String[] mPlanetTitles;
 
+    CustomDrawerAdapter adapter;
+
+    List<DrawerItem> dataList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dataList = new ArrayList<DrawerItem>();
+
         mTitle = mDrawerTitle = getTitle();
-        mPlanetTitles = getResources().getStringArray(R.array.planets_array);
+        //mPlanetTitles = getResources().getStringArray(R.array.planets_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mPlanetTitles));
+
+        /*
+        set up the drawer's list view with items and click listener
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mPlanetTitles));
+        Add Drawer Item to dataList
+        TODO: Change pre-define or xml.
+        */
+
+        dataList.add(new DrawerItem("Message", R.drawable.ic_action_email));
+        dataList.add(new DrawerItem("Likes", R.drawable.ic_action_good));
+        dataList.add(new DrawerItem("Games", R.drawable.ic_action_gamepad));
+        dataList.add(new DrawerItem("Lables", R.drawable.ic_action_labels));
+        dataList.add(new DrawerItem("Search", R.drawable.ic_action_search));
+        dataList.add(new DrawerItem("Cloud", R.drawable.ic_action_cloud));
+        dataList.add(new DrawerItem("Camara", R.drawable.ic_action_camera));
+        dataList.add(new DrawerItem("Video", R.drawable.ic_action_video));
+        dataList.add(new DrawerItem("Groups", R.drawable.ic_action_group));
+        dataList.add(new DrawerItem("Import & Export", R.drawable.ic_action_import_export));
+        dataList.add(new DrawerItem("About", R.drawable.ic_action_about));
+        dataList.add(new DrawerItem("Settings", R.drawable.ic_action_settings));
+        dataList.add(new DrawerItem("Help", R.drawable.ic_action_help));
+
+        adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item, dataList);
+
+        mDrawerList.setAdapter(adapter);
+
+
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        ActionBar actionBar = getActionBar();
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
@@ -71,10 +111,11 @@ public class MainActivity extends Activity {
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
-            selectItem(0);
+            selectMenuItem(0);
         }
     }
 
@@ -90,7 +131,7 @@ public class MainActivity extends Activity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+        menu.findItem(R.id.action_moods).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -118,6 +159,9 @@ public class MainActivity extends Activity {
                 return true;
 
             case R.id.action_settings:
+                //Settings
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
 
 
@@ -130,26 +174,140 @@ public class MainActivity extends Activity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
+            //selectItem(position);
+            selectMenuItem(position);
         }
     }
 
-    private void selectItem(int position) {
-        
-        // update the main content by replacing fragments
+//    private void selectItem(int position) {
+////        Intent intent = new Intent(this, MemberActivity.class);
+////        startActivity(intent);
+//
+//        // update the main content by replacing fragments
+//
+//        Fragment fragment = new PlanetFragment();
+//        Bundle args = new Bundle();
+//        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+//        fragment.setArguments(args);
+//
+//        FragmentManager fragmentManager = getFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+//
+//        // update selected item and title, then close the drawer
+//        mDrawerList.setItemChecked(position, true);
+//        setTitle(mPlanetTitles[position]);
+//        mDrawerLayout.closeDrawer(mDrawerList);
+//    }
 
-        Fragment fragment = new PlanetFragment();
+    public void selectMenuItem(int possition) {
+
+        Fragment fragment = null;
         Bundle args = new Bundle();
-        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+        switch (possition) {
+            case 0:
+                fragment = new FragmentOne();
+                args.putString(FragmentOne.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 1:
+                fragment = new FragmentTwo();
+                args.putString(FragmentTwo.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 2:
+                fragment = new FragmentThree();
+                args.putString(FragmentThree.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 3:
+                fragment = new FragmentOne();
+                args.putString(FragmentOne.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 4:
+                fragment = new FragmentTwo();
+                args.putString(FragmentTwo.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 5:
+                fragment = new FragmentThree();
+                args.putString(FragmentThree.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 6:
+                fragment = new FragmentOne();
+                args.putString(FragmentOne.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 7:
+                fragment = new FragmentTwo();
+                args.putString(FragmentTwo.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 8:
+                fragment = new FragmentThree();
+                args.putString(FragmentThree.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 9:
+                fragment = new FragmentOne();
+                args.putString(FragmentOne.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 10:
+                fragment = new FragmentTwo();
+                args.putString(FragmentTwo.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 11:
+                fragment = new FragmentThree();
+                args.putString(FragmentThree.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            case 12:
+                fragment = new FragmentOne();
+                args.putString(FragmentOne.ITEM_NAME, dataList.get(possition)
+                        .getItemName());
+                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(possition)
+                        .getImgResID());
+                break;
+            default:
+                break;
+        }
+
         fragment.setArguments(args);
+        FragmentManager frgManager = getFragmentManager();
+        frgManager.beginTransaction().replace(R.id.content_frame, fragment)
+                .commit();
 
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-        // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mPlanetTitles[position]);
+        mDrawerList.setItemChecked(possition, true);
+        setTitle(dataList.get(possition).getItemName());
         mDrawerLayout.closeDrawer(mDrawerList);
+
     }
 
     @Override
