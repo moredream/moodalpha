@@ -4,6 +4,7 @@ package com.comfyard.moodalpha;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -242,17 +243,35 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            //Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+        // Handle action buttons
+        switch(item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
 
-            return true;
+                return true;
+            case R.id.action_main:
+                intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_moods:
+                intent = new Intent(getActivity(), MoodActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_settings:
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
     /**

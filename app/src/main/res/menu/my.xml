@@ -1,9 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.comfyard.moodalpha.MyActivity" >
-    <item android:id="@+id/action_example"
-        android:title="@string/title_activity_my"
-        android:showAsAction="withText|ifRoom" />
+
+    <item android:id="@+id/action_main"
+        android:title="@string/action_main"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_moods"
+        android:title="@string/action_moods"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom" />
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
