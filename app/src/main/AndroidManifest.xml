@@ -14,6 +14,11 @@
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -39,7 +44,7 @@
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
         <activity
-            android:name="com.comfyard.moodalpha.MemberActivity"
+            android:name=".member.MemberActivity"
             android:label="@string/title_activity_member"
             android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
 
@@ -75,6 +80,11 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.comfyard.moodalpha.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
     </application>
 

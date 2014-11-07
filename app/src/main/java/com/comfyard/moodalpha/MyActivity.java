@@ -2,11 +2,16 @@ package com.comfyard.moodalpha;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.comfyard.moodalpha.member.MemberActivity;
+import com.comfyard.moodalpha.menu.NavigationDrawerFragment;
 
 
 public class MyActivity extends Activity
@@ -39,11 +44,32 @@ public class MyActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, DrawerFragment.newInstance(position + 1))
-                .commit();
+
+        Intent intent;
+        FragmentManager frgManager = getFragmentManager();
+
+
+        Fragment fragment = null;
+        Bundle args = new Bundle();
+        switch (position) {
+            case 0:
+                fragment = new MoodFragment();
+                frgManager.beginTransaction().replace(R.id.container, fragment).commit();
+
+                break;
+            case 1:
+                intent = new Intent(this, MemberActivity.class);
+                startActivity(intent);
+                break;
+            case 2:
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+
+
     }
 
     public void onSectionAttached(int number) {

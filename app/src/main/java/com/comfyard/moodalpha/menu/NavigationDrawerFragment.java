@@ -1,4 +1,4 @@
-package com.comfyard.moodalpha;
+package com.comfyard.moodalpha.menu;
 
 
 import android.app.ActionBar;
@@ -21,6 +21,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.comfyard.moodalpha.MainActivity;
+import com.comfyard.moodalpha.MoodActivity;
+import com.comfyard.moodalpha.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

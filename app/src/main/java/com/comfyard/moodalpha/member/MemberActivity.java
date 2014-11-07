@@ -1,9 +1,11 @@
-package com.comfyard.moodalpha;
+package com.comfyard.moodalpha.member;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.comfyard.moodalpha.R;
 
 
 public class MemberActivity extends Activity {

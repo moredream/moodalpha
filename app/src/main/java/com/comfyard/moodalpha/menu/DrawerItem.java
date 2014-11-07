@@ -1,4 +1,4 @@
-package com.comfyard.moodalpha.custom;
+package com.comfyard.moodalpha.menu;
 
 /**
  * Created by moredream on 11/6/14.

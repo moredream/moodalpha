@@ -1,4 +1,4 @@
-package com.comfyard.moodalpha.custom;
+package com.comfyard.moodalpha.menu;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -13,23 +13,23 @@ import com.comfyard.moodalpha.R;
 /**
  * Created by moredream on 11/6/14.
  */
-public class FragmentTwo extends Fragment {
+public class FragmentThree extends Fragment {
     private ImageView ivIcon;
     private TextView tvItemName;
 
     public static final String IMAGE_RESOURCE_ID = "iconResourceID";
     public static final String ITEM_NAME = "itemName";
 
-    public FragmentTwo() {
+    public FragmentThree() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_layout_two, container, false);
-        ivIcon = (ImageView) view.findViewById(R.id.frag2_icon);
-        tvItemName = (TextView) view.findViewById(R.id.frag2_text);
+        View view = inflater.inflate(R.layout.fragment_layout_three, container, false);
+        ivIcon = (ImageView) view.findViewById(R.id.frag3_icon);
+        tvItemName = (TextView) view.findViewById(R.id.frag3_text);
 
         tvItemName.setText(getArguments().getString(ITEM_NAME));
         ivIcon.setImageDrawable(view.getResources().getDrawable(

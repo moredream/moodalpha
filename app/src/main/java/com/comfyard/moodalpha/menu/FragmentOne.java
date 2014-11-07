@@ -1,4 +1,4 @@
-package com.comfyard.moodalpha.custom;
+package com.comfyard.moodalpha.menu;
 
 import android.app.Fragment;
 import android.os.Bundle;
