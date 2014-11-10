@@ -17,11 +17,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.comfyard.moodalpha.auth.LoginActivity;
+import com.comfyard.moodalpha.member.MemberActivity;
 import com.comfyard.moodalpha.menu.CustomDrawerAdapter;
 import com.comfyard.moodalpha.menu.DrawerItem;
 import com.comfyard.moodalpha.menu.FragmentOne;
-import com.comfyard.moodalpha.menu.FragmentThree;
-import com.comfyard.moodalpha.menu.FragmentTwo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,20 +60,14 @@ public class MainActivity extends Activity {
         Add Drawer Item to dataList
         TODO: Change pre-define or xml.
         */
-
-        dataList.add(new DrawerItem("Message", R.drawable.ic_action_email));
-        dataList.add(new DrawerItem("Likes", R.drawable.ic_action_good));
-        dataList.add(new DrawerItem("Games", R.drawable.ic_action_gamepad));
-        dataList.add(new DrawerItem("Lables", R.drawable.ic_action_labels));
-        dataList.add(new DrawerItem("Search", R.drawable.ic_action_search));
-        dataList.add(new DrawerItem("Cloud", R.drawable.ic_action_cloud));
-        dataList.add(new DrawerItem("Camara", R.drawable.ic_action_camera));
-        dataList.add(new DrawerItem("Video", R.drawable.ic_action_video));
-        dataList.add(new DrawerItem("Groups", R.drawable.ic_action_group));
-        dataList.add(new DrawerItem("Import & Export", R.drawable.ic_action_import_export));
-        dataList.add(new DrawerItem("About", R.drawable.ic_action_about));
+        dataList.add(new DrawerItem("Mood", R.drawable.ic_action_labels));
+        dataList.add(new DrawerItem("MoodList", R.drawable.ic_action_labels));
+        dataList.add(new DrawerItem("Login", R.drawable.ic_action_labels));
+        dataList.add(new DrawerItem("Member", R.drawable.ic_action_group));
+        dataList.add(new DrawerItem("My", R.drawable.ic_action_about));
         dataList.add(new DrawerItem("Settings", R.drawable.ic_action_settings));
-        dataList.add(new DrawerItem("Help", R.drawable.ic_action_help));
+        dataList.add(new DrawerItem("Things", R.drawable.ic_action_good));
+        dataList.add(new DrawerItem("FullScreen", R.drawable.ic_action_gamepad));
 
         adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item, dataList);
 
@@ -176,109 +170,61 @@ public class MainActivity extends Activity {
     }
 
     public void selectMenuItem(int position) {
+        Intent intent;
+        FragmentManager frgManager = getFragmentManager();
+
 
         Fragment fragment = null;
         Bundle args = new Bundle();
+
         switch (position) {
             case 0:
+//                fragment = new MoodFragment();
+//                frgManager.beginTransaction().replace(R.id.container, fragment).commit();
                 fragment = new FragmentOne();
                 args.putString(FragmentOne.ITEM_NAME, dataList.get(position)
                         .getItemName());
                 args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(position)
                         .getImgResID());
+                fragment.setArguments(args);
+                frgManager = getFragmentManager();
+                frgManager.beginTransaction().replace(R.id.content_frame, fragment)
+                        .commit();
                 break;
             case 1:
-                fragment = new FragmentTwo();
-                args.putString(FragmentTwo.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
+                intent = new Intent(this, MoodActivity.class);
+                startActivity(intent);
                 break;
             case 2:
-                fragment = new FragmentThree();
-                args.putString(FragmentThree.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
                 break;
             case 3:
-                fragment = new FragmentOne();
-                args.putString(FragmentOne.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
+                intent = new Intent(this, MemberActivity.class);
+                startActivity(intent);
                 break;
             case 4:
-                fragment = new FragmentTwo();
-                args.putString(FragmentTwo.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
+                intent = new Intent(this, MyActivity.class);
+                startActivity(intent);
                 break;
             case 5:
-                fragment = new FragmentThree();
-                args.putString(FragmentThree.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 break;
             case 6:
-                fragment = new FragmentOne();
-                args.putString(FragmentOne.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
+                intent = new Intent(this, ThingActivity.class);
+                startActivity(intent);
                 break;
             case 7:
-                fragment = new FragmentTwo();
-                args.putString(FragmentTwo.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
+                intent = new Intent(this, FullscreenActivity.class);
+                startActivity(intent);
                 break;
-            case 8:
-                fragment = new FragmentThree();
-                args.putString(FragmentThree.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
-                break;
-            case 9:
-                fragment = new FragmentOne();
-                args.putString(FragmentOne.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
-                break;
-            case 10:
-                fragment = new FragmentTwo();
-                args.putString(FragmentTwo.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
-                break;
-            case 11:
-                fragment = new FragmentThree();
-                args.putString(FragmentThree.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
-                break;
-            case 12:
-                fragment = new FragmentOne();
-                args.putString(FragmentOne.ITEM_NAME, dataList.get(position)
-                        .getItemName());
-                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(position)
-                        .getImgResID());
-                break;
+
             default:
                 break;
         }
 
-        fragment.setArguments(args);
-        FragmentManager frgManager = getFragmentManager();
-        frgManager.beginTransaction().replace(R.id.content_frame, fragment)
-                .commit();
+
 
         mDrawerList.setItemChecked(position, true);
         setTitle(dataList.get(position).getItemName());

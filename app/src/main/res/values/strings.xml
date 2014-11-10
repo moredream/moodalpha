@@ -29,13 +29,15 @@
     <string name="demo_external_activity">Demo External Activity</string>
     <string name="title_activity_member">MemberActivity</string>
     <string name="hello_world">Hello world!</string>
-
     <string name="title_section1">Mood</string>
     <string name="title_section2">Member</string>
     <string name="title_section3">Setting</string>
-
     <string name="title_activity_my">MyActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_thing">ThingActivity</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

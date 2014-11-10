@@ -19,6 +19,8 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <android:uses-permission android:name="android.permission.READ_CALL_LOG" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -44,7 +46,7 @@
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
         <activity
-            android:name=".member.MemberActivity"
+            android:name="com.comfyard.moodalpha.member.MemberActivity"
             android:label="@string/title_activity_member"
             android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
 
@@ -82,9 +84,27 @@
                 android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
         <activity
-            android:name="com.comfyard.moodalpha.LoginActivity"
+            android:name="com.comfyard.moodalpha.auth.LoginActivity"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.comfyard.moodalpha.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/FullscreenTheme"
+            android:parentActivityName="com.comfyard.moodalpha.MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.comfyard.moodalpha.MainActivity" />
         </activity>
     </application>
 
