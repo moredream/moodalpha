@@ -1,5 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:moodalpha="http://schemas.android.com/apk/res-auto"
     tools:context="com.comfyard.moodalpha.MyActivity" >
 
     <item android:id="@+id/action_main"
@@ -8,6 +9,10 @@
         android:showAsAction="ifRoom" />
     <item android:id="@+id/action_moods"
         android:title="@string/action_moods"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_things"
+        android:title="@string/action_things"
         android:orderInCategory="100"
         android:showAsAction="ifRoom" />
     <item android:id="@+id/action_settings"

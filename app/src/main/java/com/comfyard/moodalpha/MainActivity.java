@@ -78,9 +78,14 @@ public class MainActivity extends Activity {
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
         ActionBar actionBar = getActionBar();
+        if (actionBar != null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+        }
 
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
@@ -143,8 +148,14 @@ public class MainActivity extends Activity {
                 intent = new Intent(this, MoodActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_my:
-                intent = new Intent(this, MyActivity.class);
+
+            case R.id.action_things:
+                intent = new Intent(this, ThingActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_main   :
+                intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
 

@@ -25,19 +25,38 @@ public class MoodActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.action_main) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            return true;
+        // The action bar home/up action should open or close the drawer.
+        // ActionBarDrawerToggle will take care of this.
+        Intent intent;
+
+        // Handle action buttons
+        switch(item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case R.id.action_moods:
+                intent = new Intent(this, MoodActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_things:
+                intent = new Intent(this, ThingActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_main   :
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_settings:
+                //Settings
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }
