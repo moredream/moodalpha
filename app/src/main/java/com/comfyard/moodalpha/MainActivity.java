@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.comfyard.moodalpha.auth.LoginActivity;
+import com.comfyard.moodalpha.authentication.AuthenticatorActivity;
 import com.comfyard.moodalpha.member.MemberActivity;
 import com.comfyard.moodalpha.menu.CustomDrawerAdapter;
 import com.comfyard.moodalpha.menu.DrawerItem;
@@ -33,7 +33,6 @@ public class MainActivity extends Activity {
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private String[] mPlanetTitles;
 
     CustomDrawerAdapter adapter;
 
@@ -43,6 +42,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Parse SDK Test
+//        Parse.initialize(this, "q9ls8GDvd3AtGxZ5JHSrFxMbXomjxEpcJ7An5MQR", "0X26QK96Bem68Pfk2nyWQP4DguqvhKrLIHNQBx5E");
+//        ParseObject testObject = new ParseObject("TestObject");
+//        testObject.put("foo", "bar");
+//        testObject.saveInBackground();
 
         dataList = new ArrayList<DrawerItem>();
 
@@ -207,7 +212,7 @@ public class MainActivity extends Activity {
                 startActivity(intent);
                 break;
             case 2:
-                intent = new Intent(this, LoginActivity.class);
+                intent = new Intent(this, AuthenticatorActivity.class);
                 startActivity(intent);
                 break;
             case 3:
